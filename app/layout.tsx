@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import SessionProvider from "@/components/auth/SessionProvider";
 import CookieConsent from "@/components/ui/CookieConsent";
@@ -41,6 +42,7 @@ export default function RootLayout({
         <SessionProvider>
           {children}
           <CookieConsent />
+          <Analytics />
         </SessionProvider>
       </body>
     </html>
