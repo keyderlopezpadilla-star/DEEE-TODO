@@ -18,7 +18,7 @@ interface CookieConsentState {
   rejectAll: () => void;
   setConsent: (consent: CookieConsent) => void;
   hideBanner: () => void;
-  showBanner: () => void;
+  openBanner: () => void;
   resetConsent: () => void;
 }
 
@@ -69,7 +69,7 @@ export const useCookieConsentStore = create<CookieConsentState>()(
         set({ showBanner: false });
       },
 
-      showBanner: () => {
+      openBanner: () => {
         set({ showBanner: true });
       },
 

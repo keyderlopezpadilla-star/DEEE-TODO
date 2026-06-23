@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { MapPin, Phone, Clock, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
+import { MapPin, Phone, Clock, Mail, Globe } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -21,25 +21,37 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
-                className="p-2 glass-hover rounded-full hover:text-neon-cyan transition-colors"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 glass rounded-full hover:text-neon-cyan transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook size={20} />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
               </a>
               <a
-                href="#"
-                className="p-2 glass-hover rounded-full hover:text-neon-cyan transition-colors"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 glass rounded-full hover:text-neon-cyan transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram size={20} />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
               </a>
               <a
-                href="#"
-                className="p-2 glass-hover rounded-full hover:text-neon-cyan transition-colors"
-                aria-label="Twitter"
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 glass rounded-full hover:text-neon-cyan transition-colors"
+                aria-label="TikTok"
               >
-                <Twitter size={20} />
+                <Globe size={20} />
               </a>
             </div>
           </div>

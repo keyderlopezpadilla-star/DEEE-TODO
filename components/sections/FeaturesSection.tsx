@@ -17,7 +17,7 @@ const features = [
   {
     icon: Award,
     title: 'Experiencia Comprobada',
-    description: 'Años de experiencia respaldando cada proyecto que realizamos.',
+    description: 'Más de 15 años de experiencia respaldando cada proyecto que realizamos.',
   },
   {
     icon: Heart,
@@ -38,7 +38,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-20 relative">
+    <section className="py-24 relative">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -59,11 +59,11 @@ export default function FeaturesSection() {
             return (
               <Card
                 key={index}
-                className="group hover:border-neon-pink transition-all duration-300"
+                className="group hover:border-neon-pink/50 transition-all duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="p-3 glass rounded-lg group-hover:bg-neon-pink/20 transition-colors">
+                    <div className="p-3 glass rounded-lg group-hover:bg-neon-pink/10 transition-colors">
                       <Icon className="text-neon-cyan group-hover:text-neon-pink transition-colors" size={24} />
                     </div>
                   </div>
@@ -71,7 +71,7 @@ export default function FeaturesSection() {
                     <h3 className="text-xl font-bold mb-2 group-hover:text-neon-cyan transition-colors">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-gray-400 text-sm leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -82,27 +82,27 @@ export default function FeaturesSection() {
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-20 glass rounded-2xl p-8">
+        <div className="mt-20 glass rounded-2xl p-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-neon-cyan mb-2">15+</div>
-              <div className="text-gray-400">Años de Experiencia</div>
+              <div className="text-5xl font-bold bg-gradient-to-r from-neon-cyan to-neon-pink bg-clip-text text-transparent mb-2">15+</div>
+              <div className="text-gray-400 font-medium">Años de Experiencia</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-neon-pink mb-2">10K+</div>
-              <div className="text-gray-400">Proyectos Completados</div>
+              <div className="text-5xl font-bold bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent mb-2">10K+</div>
+              <div className="text-gray-400 font-medium">Proyectos Completados</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-neon-cyan mb-2">99%</div>
-              <div className="text-gray-400">Satisfacción del Cliente</div>
+              <div className="text-5xl font-bold bg-gradient-to-r from-neon-cyan to-neon-green bg-clip-text text-transparent mb-2">99%</div>
+              <div className="text-gray-400 font-medium">Satisfacción del Cliente</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-1/2 left-0 w-64 h-64 bg-neon-cyan/10 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-neon-pink/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute top-1/2 left-0 w-64 h-64 bg-neon-cyan/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-neon-pink/5 rounded-full blur-3xl -z-10" />
     </section>
   );
 }

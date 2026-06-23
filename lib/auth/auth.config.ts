@@ -1,6 +1,6 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { compare } from 'bcrypt';
+import { compare } from 'bcryptjs';
 
 /**
  * NextAuth Configuration
@@ -13,17 +13,19 @@ const users = [
     id: '1',
     email: 'admin@deeetodo.com',
     name: 'Admin DEEE TODO',
-    password: '$2b$10$YourHashedPasswordHere', // bcrypt hash
+    password: '$2a$10$placeholder', // bcrypt hash - using demo password check below
     role: 'admin',
     discountPercentage: 0,
+    demoPassword: 'admin123',
   },
   {
     id: '2',
     email: 'cliente@example.com',
     name: 'Cliente Ejemplo',
-    password: '$2b$10$YourHashedPasswordHere',
+    password: '$2a$10$placeholder',
     role: 'customer',
     discountPercentage: 10,
+    demoPassword: 'demo123',
   },
 ];
 
@@ -49,7 +51,7 @@ export const authOptions: NextAuthOptions = {
 
         // Verify password
         // In production, use: const isValid = await compare(credentials.password, user.password);
-        const isValid = credentials.password === 'demo123'; // Demo password
+        const isValid = credentials.password === (user as any).demoPassword;
 
         if (!isValid) {
           throw new Error('Contraseña incorrecta');

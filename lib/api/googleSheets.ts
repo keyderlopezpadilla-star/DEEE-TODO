@@ -1,17 +1,22 @@
-import { google } from 'googleapis';
-
 /**
  * Google Sheets API Integration
  * Automatically log form submissions to Google Sheets
+ * Gracefully handles missing configuration (works without Google Sheets in dev/preview)
  */
 
-// Initialize Google Sheets API
 let sheets: any = null;
 
-function getGoogleSheetsClient() {
+async function getGoogleSheetsClient() {
   if (sheets) return sheets;
 
+  // Skip if no credentials configured
+  if (!process.env.GOOGLE_SHEETS_CLIENT_EMAIL || !process.env.GOOGLE_SHEETS_PRIVATE_KEY) {
+    return null;
+  }
+
   try {
+    const { google } = await import('googleapis');
+    
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
@@ -36,10 +41,10 @@ async function appendRow(
   sheetName: string,
   values: any[]
 ) {
-  const client = getGoogleSheetsClient();
+  const client = await getGoogleSheetsClient();
   
   if (!client) {
-    console.error('Google Sheets client not initialized');
+    console.warn('Google Sheets client not available - skipping log');
     return false;
   }
 
@@ -74,7 +79,7 @@ export async function logContactForm(data: {
   const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
   
   if (!spreadsheetId) {
-    console.warn('Google Sheets Spreadsheet ID not configured');
+    console.warn('Google Sheets Spreadsheet ID not configured - skipping log');
     return false;
   }
 
@@ -106,7 +111,7 @@ export async function logQuoteRequest(data: {
   const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
   
   if (!spreadsheetId) {
-    console.warn('Google Sheets Spreadsheet ID not configured');
+    console.warn('Google Sheets Spreadsheet ID not configured - skipping log');
     return false;
   }
 
@@ -136,7 +141,7 @@ export async function logUserRegistration(data: {
   const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
   
   if (!spreadsheetId) {
-    console.warn('Google Sheets Spreadsheet ID not configured');
+    console.warn('Google Sheets Spreadsheet ID not configured - skipping log');
     return false;
   }
 
@@ -150,52 +155,4 @@ export async function logUserRegistration(data: {
   ];
 
   return await appendRow(spreadsheetId, 'Usuarios', values);
-}
-
-/**
- * Create initial sheets structure
- * This should be run once to set up the spreadsheet
- */
-export async function setupSpreadsheet() {
-  const client = getGoogleSheetsClient();
-  const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
-  
-  if (!client || !spreadsheetId) {
-    console.error('Cannot set up spreadsheet: client or ID not available');
-    return false;
-  }
-
-  try {
-    // Create headers for each sheet
-    const sheets = [
-      {
-        name: 'Contacto',
-        headers: ['Fecha', 'Tipo', 'Nombre', 'Email', 'Teléfono', 'Asunto', 'Mensaje'],
-      },
-      {
-        name: 'Presupuestos',
-        headers: ['Fecha', 'Tipo', 'Nombre', 'Email', 'Teléfono', 'Servicio', 'Cantidad', 'Descripción'],
-      },
-      {
-        name: 'Usuarios',
-        headers: ['Fecha', 'Tipo', 'Nombre', 'Email', 'Teléfono'],
-      },
-    ];
-
-    for (const sheet of sheets) {
-      await client.spreadsheets.values.update({
-        spreadsheetId,
-        range: `${sheet.name}!A1:Z1`,
-        valueInputOption: 'RAW',
-        requestBody: {
-          values: [sheet.headers],
-        },
-      });
-    }
-
-    return true;
-  } catch (error) {
-    console.error('Error setting up spreadsheet:', error);
-    return false;
-  }
 }

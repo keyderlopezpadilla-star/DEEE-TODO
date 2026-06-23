@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { hash } from 'bcrypt';
+import { hash } from 'bcryptjs';
 import { logUserRegistration } from '@/lib/api/googleSheets';
 import { 
   sanitizeString, 

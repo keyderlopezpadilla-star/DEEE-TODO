@@ -103,7 +103,7 @@ export const useCartStore = create<CartState>()(
           }
 
           // Add item to Shopify cart
-          const cart = await addToCart(cartId, [
+          const cart = await addToCart(cartId!, [
             {
               merchandiseId: item.variantId,
               quantity: item.quantity,
