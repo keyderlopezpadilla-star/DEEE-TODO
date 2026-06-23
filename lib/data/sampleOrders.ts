@@ -1,0 +1,111 @@
+import { Order } from '../types';
+
+/**
+ * Sample orders for demonstration
+ * In production, these would come from Shopify Orders API or database
+ */
+export const sampleOrders: Order[] = [
+  {
+    id: '1001',
+    userId: '2',
+    orderNumber: 'DEEE-2024-1001',
+    items: [
+      {
+        id: '1',
+        productId: '1',
+        title: 'Camiseta Personalizada DTF',
+        quantity: 2,
+        price: 15.99,
+        image: '/images/products/camiseta-dtf.jpg',
+      },
+      {
+        id: '2',
+        productId: '2',
+        title: 'Taza Sublimada Personalizada',
+        quantity: 1,
+        price: 8.99,
+        image: '/images/products/taza-sublimada.jpg',
+      },
+    ],
+    subtotal: 40.97,
+    discount: 4.10,
+    shipping: 5.00,
+    total: 41.87,
+    status: 'delivered',
+    shippingAddress: {
+      name: 'Cliente Ejemplo',
+      phone: '657666741',
+      address1: 'Carrer de la Muntanya, 11',
+      city: 'Algemesí',
+      province: 'Valencia',
+      country: 'España',
+      zip: '46680',
+    },
+    trackingNumber: 'ES123456789',
+    createdAt: new Date('2024-01-15'),
+    updatedAt: new Date('2024-01-18'),
+  },
+  {
+    id: '1002',
+    userId: '2',
+    orderNumber: 'DEEE-2024-1002',
+    items: [
+      {
+        id: '3',
+        productId: '6',
+        title: 'Lona Publicitaria 2x1m',
+        quantity: 1,
+        price: 45.00,
+        image: '/images/products/lona-publicitaria.jpg',
+      },
+    ],
+    subtotal: 45.00,
+    discount: 4.50,
+    shipping: 8.00,
+    total: 48.50,
+    status: 'shipped',
+    shippingAddress: {
+      name: 'Cliente Ejemplo',
+      phone: '657666741',
+      address1: 'Carrer de la Muntanya, 11',
+      city: 'Algemesí',
+      province: 'Valencia',
+      country: 'España',
+      zip: '46680',
+    },
+    trackingNumber: 'ES987654321',
+    createdAt: new Date('2024-02-01'),
+    updatedAt: new Date('2024-02-02'),
+  },
+  {
+    id: '1003',
+    userId: '2',
+    orderNumber: 'DEEE-2024-1003',
+    items: [
+      {
+        id: '4',
+        productId: '5',
+        title: 'Cojín Sublimado 40x40cm',
+        quantity: 3,
+        price: 16.99,
+        image: '/images/products/cojin-sublimado.jpg',
+      },
+    ],
+    subtotal: 50.97,
+    discount: 5.10,
+    shipping: 5.00,
+    total: 50.87,
+    status: 'processing',
+    shippingAddress: {
+      name: 'Cliente Ejemplo',
+      phone: '657666741',
+      address1: 'Carrer de la Muntanya, 11',
+      city: 'Algemesí',
+      province: 'Valencia',
+      country: 'España',
+      zip: '46680',
+    },
+    createdAt: new Date('2024-02-10'),
+    updatedAt: new Date('2024-02-10'),
+  },
+];
